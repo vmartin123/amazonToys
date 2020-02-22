@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("hello toys");
+		popularToys(5, 2, new ArrayList<String>(), 7, new ArrayList<String>());
 	}
 
-	public ArrayList<String> popularToys(int numToys, int topToys, List<String> toys, int numQuotes,
+	public static ArrayList<String> popularToys(int numToys, int topToys, List<String> toys, int numQuotes,
 			List<String> quotes) {
 
 		HashMap<String, Integer> totalQuotesByToys = new HashMap<>();
