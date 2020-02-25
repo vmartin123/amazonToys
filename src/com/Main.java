@@ -1,11 +1,12 @@
 package com;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
 
 public class Main {
 
@@ -27,8 +28,6 @@ public class Main {
 		quotes.add("Warcraft is slowly rising in popularity ahead of the holiday season");
 
 		System.out.println("toys:" + popularToys(6, 2, toys, 6, quotes).toString());
-		
-		
 	}
 
 	public static ArrayList<String> popularToys(int numToys, int topToys, List<String> toys, int numQuotes,
@@ -38,7 +37,7 @@ public class Main {
 
 		for (String quote : quotes) {
 			for (String toy : toys) {
-				if (quote.contains(toy)) {
+				if (quote.toLowerCase().contains(toy.toLowerCase())) {
 					if (totalQuotesByToys.get(toy) != null) {
 						totalQuotesByToys.put(toy, totalQuotesByToys.get(toy) + 1);
 					} else {
@@ -47,13 +46,12 @@ public class Main {
 				}
 			}
 		}
-		
-		
-		System.out.println("aaaaa");
-		
 
-		ArrayList<String> topToysList = (ArrayList<String>) totalQuotesByToys.entrySet().stream()
-				.sorted(Comparator.comparing(Map.Entry::getValue)).map(Map.Entry::getKey).collect(Collectors.toList());
+		Map<String, Integer> sorted = totalQuotesByToys.entrySet().stream()
+				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(topToys)
+				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+
+		ArrayList<String> topToysList = new ArrayList<String>(sorted.keySet());
 
 		return topToysList;
 	}
