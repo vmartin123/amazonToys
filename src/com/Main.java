@@ -29,10 +29,6 @@ public class Main {
 				}
 			}
 		}
-		
-		
-		
-		
 
 		ArrayList<String> topToysList = (ArrayList<String>) totalQuotesByToys.entrySet().stream()
 				.sorted(Comparator.comparing(Map.Entry::getValue)).map(Map.Entry::getKey).collect(Collectors.toList());
