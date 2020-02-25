@@ -51,8 +51,6 @@ public class Main {
 				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(topToys)
 				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 
-		ArrayList<String> topToysList = new ArrayList<String>(sorted.keySet());
-
-		return topToysList;
+		return new ArrayList<String>(sorted.keySet());
 	}
 }
