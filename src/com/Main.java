@@ -28,6 +28,7 @@ public class Main {
 		quotes.add("Warcraft is slowly rising in popularity ahead of the holiday season");
 
 		System.out.println("toys:" + popularToys(6, 2, toys, 6, quotes).toString());
+		
 	}
 
 	public static ArrayList<String> popularToys(int numToys, int topToys, List<String> toys, int numQuotes,
